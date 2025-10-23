@@ -14,11 +14,16 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+   
     // Check authentication status
+    
     supabase.auth.getSession().then(({ data: { session } }) => {
+      
       setUser(session?.user ?? null);
+    
       setLoading(false);
-    });
+    
+    })
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
@@ -52,10 +57,14 @@ const Index = () => {
   }
 
   return (
+    
     <div className="min-h-screen bg-background">
+      
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden smoke-bg">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-transparent to-background" />
+      
+      section className="relative min-h-screen flex items-center justify-center overflow-hidden smoke-bg"
+        
+        div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-transparent to-background" /
         
         {user && (
           <Button
